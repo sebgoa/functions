@@ -10,3 +10,12 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
+
+- name: 'gcr.io/runseb/kubeless'
+  args:
+  - trigger
+  - http
+  - create
+  - foo
+  - --function-name
+  - foo
