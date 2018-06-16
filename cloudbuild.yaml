@@ -19,8 +19,6 @@ steps:
   - foo
   - --function-name
   - foo
-  - --hostname
-  - "35.226.65.133"
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
