@@ -1,3 +1,6 @@
 def handler(event, context):
-    print(event)
-    return event['data']
+    try:
+        print(event)
+    except:
+        pass
+    return "Hello GoTo\n" 

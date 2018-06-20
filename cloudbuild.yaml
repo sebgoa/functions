@@ -1,6 +1,11 @@
 steps:
 - name: 'gcr.io/runseb/kubeless'
-  args: ['function', 'deploy', 'foo', '--runtime=python3.6', '--handler=foo.handler', '--from-file=foo.py', '--dry-run', '>', 'function.yaml']
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    /builder/kubeless.bash function ls
+    kubeless function deploy foo --runtime=python3.6 --handler=foo.handler --from-file=foo.py --dry-run > function.yaml
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
@@ -12,7 +17,12 @@ steps:
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
 
 - name: 'gcr.io/runseb/kubeless'
-  args: ['trigger', 'http', 'create', 'foo', '--function-name', 'foo', '--dry-run', '>', 'trigger.yaml']
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    /builder/kubeless.bash function ls
+    kubeless trigger http create foo --hostname func.kubeless.sh --function-name foo --dry-run > trigger.yaml
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
