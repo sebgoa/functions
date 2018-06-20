@@ -8,7 +8,7 @@ steps:
   - --handler=foo.handler
   - --from-file=foo.py
   - --dry-run
-  - >
+  - ">"
   - function.yaml
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
