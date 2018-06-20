@@ -8,11 +8,11 @@ steps:
   - --handler=foo.handler
   - --from-file=foo.py
   - --dry-run
-  - |
+  - "|"
   - kubectl
   - apply
   - -f
-  - -
+  - "-"
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
@@ -26,11 +26,11 @@ steps:
   - --function-name
   - foo
   - --dry-run
-  - |
+  - "|"
   - kubectl
   - apply
   - -f
-  - -
+  - "-"
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
