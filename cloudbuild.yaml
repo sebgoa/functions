@@ -10,6 +10,9 @@ steps:
   - --dry-run
   - >
   - function.yaml
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
 
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'function.yaml']
@@ -19,6 +22,9 @@ steps:
 
 - name: 'gcr.io/runseb/kubeless'
   args: ['trigger', 'http', 'create', 'foo', '--function-name', 'foo', '--dry-run', '>', 'trigger.yaml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
 
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'trigger.yaml']
