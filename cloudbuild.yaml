@@ -8,29 +8,20 @@ steps:
   - --handler=foo.handler
   - --from-file=foo.py
   - --dry-run
-  - "|"
-  - kubectl
-  - apply
-  - -f
-  - "-"
+  - >
+  - function.yaml
+
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'function.yaml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
 
 - name: 'gcr.io/runseb/kubeless'
-  args:
-  - trigger
-  - http
-  - create
-  - foo
-  - --function-name
-  - foo
-  - --dry-run
-  - "|"
-  - kubectl
-  - apply
-  - -f
-  - "-"
+  args: ['trigger', 'http', 'create', 'foo', '--function-name', 'foo', '--dry-run', '>', 'trigger.yaml']
+
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'trigger.yaml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
