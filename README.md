@@ -110,7 +110,8 @@ Once you will make commits to your code, container builder will run and you will
 Now that your function is deployed continuously, you want to be able to do the same with the function trigger. In this example, we create an http trigger using the `kubeless` CLI again.
 
 
-``me: 'gcr.io/runseb/kubeless'
+```
+- name: 'gcr.io/runseb/kubeless'
   entrypoint: 'bash'
   args:
   - '-c'
