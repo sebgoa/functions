@@ -1,7 +1,8 @@
 # Continuous Delivery of Functions with Google Container Builder and kubeless on GKE
 
 ## Setup
-### Create a Kubernetes cluster on GKE
+
+### Create a Kubernetes cluster on [GKE](https://cloud.google.com/kubernetes-engine/)
 
 ```
 gcloud container clusters create foobar --disable-addons HttpLoadBalancing
@@ -50,6 +51,7 @@ brew install kubeless
 
 ### Create a function
 
+```
 cat <<EOF > foo.py
 def handler(event, context):
     try:
@@ -59,6 +61,7 @@ def handler(event, context):
     print(event['data'])
     return "Hello World\n"
 EOF
+```
 
 ### Deploy the function with [Container Builder](https://cloud.google.com/container-builder/)
 
