@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/runseb/kubeless'
+- name: 'gcr.io/runseb/kubeless@sha256:9744c1fa3a171924e78a638c7271cd8f36a6e974176f9f9292b229da13a079c2'
   entrypoint: 'bash'
   args:
   - '-c'
@@ -16,7 +16,7 @@ steps:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
 
-- name: 'gcr.io/runseb/kubeless'
+- name: 'gcr.io/runseb/kubeless@sha256:9744c1fa3a171924e78a638c7271cd8f36a6e974176f9f9292b229da13a079c2'
   entrypoint: 'bash'
   args:
   - '-c'
