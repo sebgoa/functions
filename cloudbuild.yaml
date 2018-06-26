@@ -22,7 +22,7 @@ steps:
   - '-c'
   - |
     /builder/kubeless.bash function ls
-    kubeless trigger http create foo --hostname func.kubeless.sh --path pini --function-name foo --dry-run > trigger.yaml
+    kubeless trigger http create foo --hostname func.kubeless.sh --path google --function-name foo --dry-run > trigger.yaml
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=geek-demo'
