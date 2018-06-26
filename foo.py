@@ -3,4 +3,4 @@ def handler(event, context):
         print(event)
     except:
         pass
-    return "Hello Aparna\n" 
+    return "Ok Google\n" 
