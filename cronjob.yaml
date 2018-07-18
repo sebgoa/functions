@@ -1,0 +1,45 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: build
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          initContainers:
+          - name: init
+            image: gcr.io/cloud-builders/git 
+            args:
+            - "clone"
+            - "https://github.com/sebgoa/functions.git"
+            - "/tmp"
+            volumeMounts:
+            - name: source
+              mountPath: /tmp
+          - name: ls
+            image: debian:stable-slim
+            command: ["/bin/sh"]
+            args:
+            - "-c"
+            - "cat /tmp/config.json"
+            volumeMounts:
+            - name: docker
+              mountPath: /tmp/
+          containers:
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor
+            args: ["--dockerfile=/workspace/Dockerfile","--context=/workspace/","--destination=docker.io/runseb/barbaz"]
+            volumeMounts:
+            - name: source
+              mountPath: /workspace
+            - name: docker
+              mountPath: /root/.docker/
+          restartPolicy: OnFailure
+          volumes:
+          - name: source
+            emptyDir: {}
+          - name: docker
+            configMap:
+              name: docker
