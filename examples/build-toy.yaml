@@ -1,0 +1,13 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: test
+spec:
+  source:
+    git:
+      url: https://github.com/sebgoa/functions.git
+      revision: master
+  steps:
+  - name: ls
+    image: busybox
+    args: ['ls']

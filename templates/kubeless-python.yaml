@@ -1,0 +1,27 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: BuildTemplate
+metadata:
+  name: kubeless
+spec:
+  parameters:
+  - name: IMAGE
+    description: The name of the image to push
+  - name: DOCKERFILE
+    description: Path to the Dockerfile to build.
+    default: /workspace/Dockerfile
+  - name: FUNCTION_NAME
+    description: The name of the function to put in the runtime 
+
+  steps:
+  - name: add-function
+    image: debian:stable-slim
+    command: ["/bin/sh"]
+    args: ["-c", "/bin/echo -e 'FROM kubeless/python:3.6\nRUN mkdir /workspace/kubeless\nADD foo.py /workspace/kubeless/foo.py' > /workspace/Dockerfile"]
+  - name: build-and-push
+    image: gcr.io/kaniko-project/executor
+    args:
+    - --dockerfile=${DOCKERFILE}
+    - --destination=${IMAGE}
+  - name: fail
+    image: busybox
+    args: ['foo']

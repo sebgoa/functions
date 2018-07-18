@@ -1,0 +1,17 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: kubeless-test
+spec:
+  serviceAccountName: build
+  source:
+    git:
+      url: https://github.com/sebgoa/functions.git
+      revision: master
+  template:
+    name: kubeless
+    arguments:
+    - name: IMAGE
+      value: docker.io/runseb/bazbaz
+    - name: FUNCTION_NAME
+      value: foo.py
