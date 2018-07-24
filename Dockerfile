@@ -1,2 +1,2 @@
-FROM kubeless/python:3.6
+FROM debian:stable-slim
 ADD foo.py /foo.py
