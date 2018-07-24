@@ -6,6 +6,9 @@ spec:
   parameters:
   - name: IMAGE
     description: The name of the image to push
+  - name: TAG
+    description: Tag of the image being pushed
+    default: latest
   - name: DOCKERFILE
     description: Path to the Dockerfile to build.
     default: /workspace/Dockerfile
@@ -16,12 +19,9 @@ spec:
   - name: add-function
     image: debian:stable-slim
     command: ["/bin/sh"]
-    args: ["-c", "/bin/echo -e 'FROM kubeless/python:3.6\nRUN mkdir /workspace/kubeless\nADD foo.py /workspace/kubeless/foo.py' > /workspace/Dockerfile"]
+    args: ["-c", "/bin/echo -e 'FROM kubeless/python:3.6\nUSER root\nRUN mkdir kubeless\nCOPY ${FUNCTION_NAME} kubeless/foo.py' > /workspace/Dockerfile; export TAG=$(git rev-parse --head)"]
   - name: build-and-push
     image: gcr.io/kaniko-project/executor
     args:
     - --dockerfile=${DOCKERFILE}
     - --destination=${IMAGE}
-  - name: fail
-    image: busybox
-    args: ['foo']

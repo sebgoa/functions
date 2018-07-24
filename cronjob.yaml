@@ -18,15 +18,6 @@ spec:
             volumeMounts:
             - name: source
               mountPath: /tmp
-          - name: ls
-            image: debian:stable-slim
-            command: ["/bin/sh"]
-            args:
-            - "-c"
-            - "cat /tmp/config.json"
-            volumeMounts:
-            - name: docker
-              mountPath: /tmp/
           containers:
           - name: kaniko
             image: gcr.io/kaniko-project/executor
@@ -35,11 +26,15 @@ spec:
             - name: source
               mountPath: /workspace
             - name: docker
-              mountPath: /root/.docker/
+              mountPath: "/kaniko/secrets"
+              readOnly: true
+            env:
+            - name: DOCKER_CONFIG
+              value: "/kaniko/secrets"
           restartPolicy: OnFailure
           volumes:
           - name: source
             emptyDir: {}
           - name: docker
-            configMap:
-              name: docker
+            secret:
+              secretName: docker

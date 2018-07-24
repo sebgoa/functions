@@ -1,0 +1,47 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Configuration
+metadata:
+  name: fun
+spec:
+  build:
+    serviceAccountName: build
+    source:
+      git:
+        url: https://github.com/sebgoa/functions
+        revision: &rev master 
+    template:
+      name: kubeless
+      arguments:
+       - name: IMAGE
+         value: &image docker.io/runseb/bazbaz
+       - name: FUNCTION_NAME
+         value: foo.py
+  revisionTemplate:
+    metadata:
+      labels:
+        knative.dev/type: kubeless-function
+    spec:
+      container:
+        image: *image
+        env:
+        - name: MOD_NAME
+          value: foo
+        - name: FUNC_HANDLER
+          value: handler
+        - name: FUNC_PORT
+          value: "8080"
+        - name: FUNC_TIMEOUT
+          value: "300"
+        - name: FUNC_RUNTIME
+          value: "python3.6"
+        - name: FUNC_MEMORY_LIMIT
+          value: "128Mi"
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: Route
+metadata:
+  name: fun
+spec:
+  traffic:
+  - configurationName: fun
+    percent: 100

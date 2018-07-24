@@ -1,0 +1,12 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: test
+spec:
+  steps:
+  - name: date
+    image: debian:stable-slim
+    args: ['/bin/date']
+  - name: log
+    image: busybox
+    args: ['fail']
