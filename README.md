@@ -5,17 +5,7 @@
 
 
 
-### Install Helm and Deploy an Ingress controller
-
-To expose our functions to the public internet we need to have an `nginx` Ingress controller. You can install it with `helm`.
-
-```
-helm init
-kubectl create serviceaccount --namespace kube-system tiller
-kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'      
-helm init --service-account tiller --upgrade
-```
+### Insta
 
 Now deploy the Ingress controller:
 
