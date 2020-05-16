@@ -12,7 +12,6 @@ ion
 ```
 cat <<
 
-To deploy the function continuously (i.e on every commit), we can use Google container builder.
 
 To do this we need to write a `cloudbuild.yaml` file which defines our _build steps_
 
