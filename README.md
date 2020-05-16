@@ -5,7 +5,6 @@
 ### Create a Kubernetes cluster on [GKE](https://cloud.google.com/kubernetes-engine/)
 
 ```
-gcloud container clusters create foobar --disable-addons HttpLoadBalancing
 ```
 
 
