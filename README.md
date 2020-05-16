@@ -8,7 +8,6 @@
 
 
 ```
-kubectl create clusterrolebinding functions-cluster-admin --clusterrole=cluster-admin --user=<ACCOUNT_EMAIL>
 ```
 
 ### Install Helm and Deploy an Ingress controller
