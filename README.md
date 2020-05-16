@@ -15,7 +15,6 @@ ion
 
 ```
 steps:
-- name: 'gcr.io/runseb/kubeless'
   entrypoint: 'bash'
   args:
   - '-c'
