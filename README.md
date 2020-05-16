@@ -5,19 +5,7 @@
 
 
 
-### Insta
 
-Now deploy the Ingress controller:
-
-```
-helm install --name nginx-ingress stable/nginx-ingress --set rbac.create=true
-```
-
-Note the Public IP for the LoadBalancer on which you reach the Ingress controller. Use that IP in your DNS domain configuration.
-
-### Install `kubeless`
-
-```
 kubectl create ns kubeless
 kubectl create -f https://github.com/kubeless/kubeless/releases/download/v1.0.0-alpha.6/kubeless-v1.0.0-alpha.6.yaml 
 ```
