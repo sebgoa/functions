@@ -7,16 +7,7 @@
 
 
 ```
-
-On your local machine get the `kubeless` CLI
-
-```
-brew install kubeless
-```
-
-## Create a function and setup your CD.
-
-### Create a function
+ion
 
 ```
 cat <<EOF > foo.py
