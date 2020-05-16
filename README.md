@@ -6,7 +6,6 @@
 
 
 
-kubectl create ns kubeless
 kubectl create -f https://github.com/kubeless/kubeless/releases/download/v1.0.0-alpha.6/kubeless-v1.0.0-alpha.6.yaml 
 ```
 
