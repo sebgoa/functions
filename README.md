@@ -3,12 +3,7 @@
 ## Setup
 
 
-```
-```
 
-
-```
-```
 
 ### Install Helm and Deploy an Ingress controller
 
