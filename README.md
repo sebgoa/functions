@@ -2,7 +2,6 @@
 
 ## Setup
 
-### Create a Kubernetes cluster on [GKE](https://cloud.google.com/kubernetes-engine/)
 
 ```
 ```
