@@ -1,6 +1,5 @@
 # Continuous Delivery of Functions with Google Container Builder and kubeless on GKE
 
-## Setup
 
 
 
