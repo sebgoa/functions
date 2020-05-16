@@ -8,7 +8,6 @@
 gcloud container clusters create foobar --disable-addons HttpLoadBalancing
 ```
 
-Configure your account to be cluster admin:
 
 ```
 kubectl create clusterrolebinding functions-cluster-admin --clusterrole=cluster-admin --user=<ACCOUNT_EMAIL>
