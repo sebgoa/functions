@@ -13,7 +13,6 @@ ion
 cat <<
 
 
-To do this we need to write a `cloudbuild.yaml` file which defines our _build steps_
 
 First we define a custom build step which is going to write our Function manifest. To do this we rely on a custom image `runseb/kubeless` which contains the kubeless CLI. We call it via bash in order to properly write the manifest to the container builder temporary workspace.
 
