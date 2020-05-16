@@ -10,17 +10,7 @@
 ion
 
 ```
-cat <<EOF > foo.py
-def handler(event, context):
-    try:
-        print(event)
-    except:
-        pass
-    print(event['data'])
-    return "Hello World\n"
-EOF
-```
-
+cat <<
 ### Deploy the function with [Container Builder](https://cloud.google.com/container-builder/)
 
 To deploy the function continuously (i.e on every commit), we can use Google container builder.
